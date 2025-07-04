@@ -1,0 +1,111 @@
+INFO:     Started server process [1678]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     152.59.194.149:64395 - "GET /Countries HTTP/1.1" 200 OK
+INFO:     152.59.194.149:4881 - "OPTIONS /Signup HTTP/1.1" 200 OK
+INFO:     152.59.194.149:4881 - "POST /Signup HTTP/1.1" 422 Unprocessable Entity
+INFO:     152.59.194.149:52035 - "POST /Signup HTTP/1.1" 422 Unprocessable Entity
+INFO:     152.59.194.149:52639 - "POST /Signup HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57722 - "OPTIONS /Login HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57722 - "POST /Login HTTP/1.1" 200 OK
+2025-04-29 13:45:39.512394
+INFO:     152.59.194.149:57722 - "GET /DashboardExpense/7 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57747 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57747 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57934 - "GET /PaymentMethod HTTP/1.1" 200 OK
+INFO:     152.59.194.149:35613 - "OPTIONS /add_expenses HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58359 - "POST /add_expenses HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58359 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+2025-04-29 13:46:08.433134
+INFO:     152.59.194.149:58359 - "GET /DashboardExpense/7 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58359 - "OPTIONS /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58359 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58517 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58607 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58613 - "GET /PaymentMethod HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58607 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58933 - "POST /add_expenses HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58933 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+2025-04-29 13:46:32.569186
+INFO:     152.59.194.149:58933 - "GET /DashboardExpense/7 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58939 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:59441 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60182 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60190 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+2025-04-29 13:47:35.086777
+INFO:     152.59.194.149:60190 - "GET /DashboardExpense/7 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60190 - "GET /UserbyId/7 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60707 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60707 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60747 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:60747 - "GET /AllExpenses/7/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+2025-04-29 13:47:53.146767
+INFO:     152.59.194.149:60747 - "GET /DashboardExpense/7 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:61937 - "POST /Login HTTP/1.1" 400 Bad Request
+INFO:     152.59.194.149:61942 - "POST /Login HTTP/1.1" 400 Bad Request
+INFO:     152.59.194.149:63905 - "POST /Login HTTP/1.1" 400 Bad Request
+INFO:     152.59.194.149:63905 - "POST /Login HTTP/1.1" 400 Bad Request
+INFO:     73.6.94.73:52698 - "GET /Countries HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58670 - "POST /Login HTTP/1.1" 400 Bad Request
+INFO:     152.59.194.149:64421 - "POST /Login HTTP/1.1" 200 OK
+2025-04-29 13:51:00.073600
+INFO:     152.59.194.149:64421 - "GET /DashboardExpense/6 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:65433 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:65439 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:65433 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:65433 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+2025-04-29 13:51:15.272404
+INFO:     152.59.194.149:65433 - "GET /DashboardExpense/6 HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52708 - "OPTIONS /Signup HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52708 - "POST /Signup HTTP/1.1" 200 OK
+INFO:     152.59.194.149:49725 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:49732 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:49725 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52717 - "OPTIONS /Login HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52717 - "POST /Login HTTP/1.1" 200 OK
+2025-04-29 13:51:39.523753
+INFO:     73.6.94.73:52717 - "GET /DashboardExpense/8 HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52729 - "GET /AllExpenses/8/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52730 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     73.6.94.73:52731 - "GET /PaymentMethod HTTP/1.1" 200 OK
+2025-04-29 13:55:12.503562
+INFO:     152.59.194.149:6840 - "GET /DashboardExpense/6 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:6840 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     134.122.30.157:38290 - "GET /aaa9 HTTP/1.1" 404 Not Found
+INFO:     134.122.30.157:38292 - "GET /aab8 HTTP/1.1" 404 Not Found
+INFO:     134.122.30.157:38304 - "GET / HTTP/1.1" 200 OK
+INFO:     152.59.194.149:64440 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:31754 - "GET /PaymentMethod HTTP/1.1" 200 OK
+INFO:     152.59.194.149:7788 - "OPTIONS /add_expenses HTTP/1.1" 200 OK
+INFO:     152.59.194.149:49376 - "POST /add_expenses HTTP/1.1" 200 OK
+INFO:     152.59.194.149:49376 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+2025-04-29 14:55:38.659986
+INFO:     152.59.194.149:49376 - "GET /DashboardExpense/6 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57600 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57600 - "OPTIONS /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57606 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57600 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57600 - "GET /AllExpenses/6/2025-04-01/2025-04-30 HTTP/1.1" 200 OK
+INFO:     152.59.194.149:57641 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:59592 - "GET /ExpenseCategory HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58250 - "POST /FilterExpense HTTP/1.1" 422 Unprocessable Entity
+INFO:     152.59.194.149:58250 - "POST /FilterExpense HTTP/1.1" 200 OK
+INFO:     152.59.194.149:58256 - "POST /FilterExpense HTTP/1.1" 200 OK
+2025-04-29 15:02:08.031637
+INFO:     152.59.194.149:58620 - "GET /DashboardExpense/6 HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 136, in handle_events
+    event = self.conn.next_event()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/h11/_connection.py", line 487, in next_event
+    exc._reraise_as_remote_protocol_error()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/h11/_util.py", line 77, in _reraise_as_remote_protocol_error
+    raise self
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/h11/_connection.py", line 469, in next_event
+    event = self._extract_next_receive_event()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/h11/_connection.py", line 411, in _extract_next_receive_event
+    event = self._reader(self._receive_buffer)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/h11/_readers.py", line 79, in maybe_read_from_IDLE_client
+    raise LocalProtocolError("illegal request line")
+h11._util.RemoteProtocolError: illegal request line
