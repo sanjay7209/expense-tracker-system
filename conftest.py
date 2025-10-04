@@ -1,36 +1,77 @@
 import pytest
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database import Base, get_db
+from models import Countries, Categories, PaymentMethods, Users
 from fastapi.testclient import TestClient
 from main import app
-from database import Base, engine, get_db, SessionLocal
+from passlib.hash import bcrypt
+
+# Use the DATABASE_URL from env (Postgres in CI), fallback to sqlite in dev
+DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/testdb"
+
+engine = create_engine(DATABASE_URL)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Override get_db dependency for testing
+def override_get_db():
+    try:
+        db = TestingSessionLocal()
+        yield db
+    finally:
+        db.close()
+
+app.dependency_overrides[get_db] = override_get_db
+
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_database():
-    """Create all tables before tests, drop them after."""
+    """
+    Create tables fresh for tests and seed initial data.
+    """
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
+
+    db = TestingSessionLocal()
+
+    # Seed Countries
+    country = Countries(id=1, name="Testland")
+    db.add(country)
+
+    # Seed Categories
+    category = Categories(id=1, name="Food")
+    db.add(category)
+
+    # Seed Payment Methods
+    payment_method = PaymentMethods(id=1, name="Cash")
+    db.add(payment_method)
+
+    # Seed Default User
+    user = Users(
+        id=1,
+        username="seeduser",
+        first_name="Seed",
+        last_name="User",
+        email="seed@example.com",
+        password=bcrypt.hash("SecurePass123"),  # hashed password
+        country_id=1,
+        is_admin=False
+    )
+    db.add(user)
+
+    db.commit()
+    db.close()
+
     yield
+
+    # Teardown
     Base.metadata.drop_all(bind=engine)
 
-@pytest.fixture(scope="function")
-def db_session():
-    """Provide a new database session for each test."""
-    connection = engine.connect()
-    transaction = connection.begin()
-    session = SessionLocal(bind=connection)
 
-    yield session
-
-    session.close()
-    transaction.rollback()
-    connection.close()
-
-@pytest.fixture(scope="function")
-def client(db_session):
-    """Override FastAPI's get_db dependency for tests."""
-    def override_get_db():
-        try:
-            yield db_session
-        finally:
-            db_session.close()
-
-    app.dependency_overrides[get_db] = override_get_db
-    yield TestClient(app)
+@pytest.fixture(scope="module")
+def client():
+    """
+    Provide a TestClient for API tests.
+    """
+    with TestClient(app) as c:
+        yield c
