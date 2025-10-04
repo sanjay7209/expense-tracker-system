@@ -5,15 +5,16 @@ from database import Base, get_db
 from models import Country, ExpenseCategory, PaymentMethod, User
 from fastapi.testclient import TestClient
 from main import app
-from passlib.hash import bcrypt
 
-# Use the DATABASE_URL from env (Postgres in CI), fallback to sqlite in dev
-DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/testdb"
+# Point to the Postgres service in GitHub Actions
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@postgres:5432/testdb"
 
-engine = create_engine(DATABASE_URL)
+# Create engine & session
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Override get_db dependency for testing
+
+# Override get_db for testing
 def override_get_db():
     try:
         db = TestingSessionLocal()
@@ -21,57 +22,50 @@ def override_get_db():
     finally:
         db.close()
 
+
 app.dependency_overrides[get_db] = override_get_db
 
 
-@pytest.fixture(scope="session", autouse=True)
-def setup_database():
-    """
-    Create tables fresh for tests and seed initial data.
-    """
-    Base.metadata.drop_all(bind=engine)
+@pytest.fixture(scope="function", autouse=True)
+def setup_test_db():
+    """Recreate tables and seed base data for each test run."""
+    Base.metadata.drop_all(bind=engine)   # ensure clean state
     Base.metadata.create_all(bind=engine)
 
     db = TestingSessionLocal()
 
-    # Seed Countries
-    country = Countries(id=1, name="Testland")
+    # Seed Country
+    country = Country(id=1, name="Testland", code="TST")
     db.add(country)
 
-    # Seed Categories
-    category = Categories(id=1, name="Food")
+    # Seed Expense Category
+    category = ExpenseCategory(id=1, name="Food")
     db.add(category)
 
-    # Seed Payment Methods
-    payment_method = PaymentMethods(id=1, name="Cash")
+    # Seed Payment Method
+    payment_method = PaymentMethod(id=1, type="Cash")
     db.add(payment_method)
 
-    # Seed Default User
-    user = Users(
+    # Seed User
+    user = User(
         id=1,
-        username="seeduser",
-        first_name="Seed",
+        username="testuser",
+        first_name="Test",
         last_name="User",
-        email="seed@example.com",
-        password=bcrypt.hash("SecurePass123"),  # hashed password
+        email="test@example.com",
+        password="SecurePass123",   # ⚠️ if your app hashes, replace with hashed
         country_id=1,
-        is_admin=False
+        role_id=None,
+        is_admin=False,
     )
     db.add(user)
 
     db.commit()
     db.close()
-
     yield
-
-    # Teardown
-    Base.metadata.drop_all(bind=engine)
 
 
 @pytest.fixture(scope="module")
 def client():
-    """
-    Provide a TestClient for API tests.
-    """
     with TestClient(app) as c:
         yield c
