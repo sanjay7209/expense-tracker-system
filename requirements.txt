@@ -50,7 +50,6 @@ openpyxl==3.1.5
 pandas==2.2.3
 parsedatetime==2.6
 passlib==1.7.4
-perf==0.1
 platformdirs==3.5.1
 ply==3.11
 prettytable==0.7.2
