@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database import Base, get_db
-from models import Countries, Categories, PaymentMethods, Users
+from models import Country, ExpenseCategory, PaymentMethod, User
 from fastapi.testclient import TestClient
 from main import app
 from passlib.hash import bcrypt
