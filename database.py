@@ -1,6 +1,8 @@
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
 
 # Default to your production DB if not overridden
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@52.22.120.115:5432/prod_db")
