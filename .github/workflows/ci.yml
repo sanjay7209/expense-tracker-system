@@ -47,6 +47,8 @@ jobs:
       run: |
         pip install pytest pytest-asyncio
         pytest -v
+        env:
+        DATABASE_URL: "sqlite:///:memory:"
 
     - name: Check app starts
       run: |
