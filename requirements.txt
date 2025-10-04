@@ -76,7 +76,6 @@ PyYAML==5.4.1
 requests==2.26.0
 rsa==4.9
 s3transfer==0.10.0
-selinux==3.6
 sepolicy==3.6
 setools==4.4.4
 six==1.15.0
