@@ -10,20 +10,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
-        ports: [5432:5432]
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -43,15 +29,21 @@ jobs:
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-    - name: Run tests
+    - name: Run tests (SQLite in-memory)
+      env:
+        DATABASE_URL: "sqlite:///:memory:"
       run: |
         pip install pytest pytest-asyncio
         pytest -v
-        env:
-        DATABASE_URL: "sqlite:///:memory:"
 
     - name: Check app starts
+      env:
+        DATABASE_URL: "sqlite:///:memory:"
       run: |
-        uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
-        sleep 5
+        nohup uvicorn main:app --host 0.0.0.0 --port 8000 >/dev/null 2>&1 &
+        # wait until server is ready
+        for i in {1..30}; do
+          curl -fsS http://127.0.0.1:8000/Countries && break
+          sleep 1
+        done
         curl -f http://127.0.0.1:8000/Countries
