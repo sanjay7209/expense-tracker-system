@@ -31,7 +31,6 @@ exceptiongroup==1.2.0
 fastapi==0.109.2
 fastapi-mail==1.4.1
 file-magic==0.4.0
-gpg==1.15.1
 h11==0.14.0
 idna==2.10
 importlib-metadata==4.12.0
